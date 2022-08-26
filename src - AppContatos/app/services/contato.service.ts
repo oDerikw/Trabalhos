@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Contato } from '../class/contato';
+import { Contato } from '../models/contato';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,10 @@ import { Contato } from '../class/contato';
 export class ContatoService {
 
   private _contatos : Contato[] = []
-  constructor() { }
+  constructor() {
+    let contato = new Contato("Teste", 998785415, "Masculino", "1986-12-08");
+    this.inserir(contato);
+   }
 
   public get contatos(): Contato[]{
     return this._contatos;
