@@ -9,11 +9,16 @@
 
   <ion-list>
     <ion-item>
-      <ion-input placeholder="Nome" [(ngModel)]="nome" disabled="true"></ion-input>
+      <ion-label>Habilitar Edição</ion-label>
+      <ion-toggle color="sucess" 
+      (ionChange)="alterarEdicao()"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Nome" [(ngModel)]="nome" disabled="{{edicao}}"></ion-input>
     </ion-item><ion-item>
-      <ion-input placeholder="Telefone" [(ngModel)]="telefone" type="number" disabled="true"></ion-input>
+      <ion-input placeholder="Telefone" [(ngModel)]="telefone" type="number" disabled="{{edicao}}"></ion-input>
     </ion-item><ion-item>
-      <ion-select placeholder="Selecione o Genero" [(ngModel)]="genero" disabled="true">
+      <ion-select placeholder="Selecione o Genero" [(ngModel)]="genero" disabled="{{edicao}}">
         <ion-select-option value="Masculino">Masculino</ion-select-option>
         <ion-select-option value="Feminino">Feminino</ion-select-option>
         <ion-select-option value="Não declarado">Não declarar</ion-select-option>
@@ -23,15 +28,15 @@
       <ion-datetime-button datetime="datetime"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
       <ng-template>
-        <ion-datetime disabled="true" id="datetime" max="{{data}}"
+        <ion-datetime disabled="{{edicao}}" id="datetime" max="{{data}}"
         presentation="date" [(ngModel)]="dataNascimento"></ion-datetime>
           </ng-template>
         </ion-modal>
       </ion-item>
   </ion-list>
   
-  <ion-button disable="true" expand="block" (click)="salvar()" >Salvar</ion-button>
-  <ion-button disable="true" expand="block" (click)="excluir()" color="danger" >Excluir</ion-button>
+  <ion-button disabled="{{edicao}}" expand="block" (click)="editar()" >Salvar</ion-button>
+  <ion-button disabled="{{edicao}}" expand="block" (click)="excluir()" color="danger" >Excluir</ion-button>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="secondary" (click)="irParaHome()">
