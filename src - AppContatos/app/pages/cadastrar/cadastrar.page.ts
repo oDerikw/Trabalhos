@@ -1,7 +1,17 @@
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable eqeqeq */
+/* eslint-disable object-shorthand */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable new-parens */
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/adjacent-overload-signatures */
+/* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Contato } from '../../models/contato';
+import { Aula } from '../../models/aula';
 import { ContatoService } from '../../services/contato.service';
 
 @Component({
@@ -25,7 +35,7 @@ export class CadastrarPage implements OnInit {
   cadastrar(){
     this.dataNascimento = this.dataNascimento.split('T')[0];
     if((this.validar(this.nome)) && this.validar(this.telefone)&& this.validar(this.genero)&& this.validar(this.dataNascimento)){
-      let contato: Contato = new Contato(this.nome, this.telefone, this.genero, this.dataNascimento);
+      let contato: Aula = new Aula(this.nome, this.telefone, this.genero, this.dataNascimento);
       this.contatoService.inserir(contato);
       this.presentAlert("Agenda", "Sucesso", "Cadastro realizado com sucesso!");
       console.log("Campos preenchidos corretamente!");
