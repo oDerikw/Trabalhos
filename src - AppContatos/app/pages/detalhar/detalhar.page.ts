@@ -1,16 +1,7 @@
-/* eslint-disable @typescript-eslint/member-ordering */
-/* eslint-disable eqeqeq */
-/* eslint-disable object-shorthand */
-/* eslint-disable @typescript-eslint/no-inferrable-types */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable new-parens */
-/* eslint-disable prefer-const */
-/* eslint-disable @typescript-eslint/adjacent-overload-signatures */
-/* eslint-disable no-underscore-dangle */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Aula } from 'src/app/models/aula';
+import { Contato } from 'src/app/models/contato';
 import { ContatoService } from 'src/app/services/contato.service';
 
 @Component({
@@ -19,7 +10,7 @@ import { ContatoService } from 'src/app/services/contato.service';
   styleUrls: ['./detalhar.page.scss'],
 })
 export class DetalharPage implements OnInit {
-  contato: Aula;
+  contato: Contato;
   nome: string;
   telefone: number;
   genero: string;
@@ -27,8 +18,8 @@ export class DetalharPage implements OnInit {
   data: string;
   edicao: boolean = true;
 
-  constructor(private alertController: AlertController,
-    private router: Router,
+  constructor(private alertController: AlertController, 
+    private router: Router, 
     private contatoService: ContatoService) { }
 
   ngOnInit() {
@@ -93,9 +84,9 @@ export class DetalharPage implements OnInit {
 
   editar(){
     this.dataNascimento = this.dataNascimento.split('T')[0];
-    if((this.validar(this.nome)) && this.validar(this.telefone) &&
+    if((this.validar(this.nome)) && this.validar(this.telefone) && 
     this.validar(this.genero) && this.validar(this.dataNascimento)){
-      if(this.contatoService.editar(this.contato,
+      if(this.contatoService.editar(this.contato, 
         this.nome, this.telefone, this.genero, this.dataNascimento)){
           this.presentAlert("Agenda", "Sucesso", "Cadastro realizado com sucesso!");
           this.router.navigate(["/home"]);
