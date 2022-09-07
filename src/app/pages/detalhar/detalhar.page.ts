@@ -31,15 +31,19 @@ export class DetalharPage implements OnInit {
     this.disciplina = nav.extras.state.objeto;
     this.data= new Date().toISOString();
     this.form_cadastrar = this.formBuilder.group({
-      nome: ["", [Validators.required]],
-      cargaHoraria: ["", [Validators.required]],
-      natureza: ["", [Validators.required]],
-      dataInicio: ["", [Validators.required]],
-      dataFim: ["", [Validators.required]],
-      vagas: ["", [Validators.required]],
-      modalidade: ["", [Validators.required]],
-      professor: ["", [Validators.required]]
+      nome: [this.disciplina.nome, [Validators.required]],
+      cargaHoraria: [this.disciplina.cargaHoraria, [Validators.required]],
+      natureza: [this.disciplina.natureza, [Validators.required]],
+      dataInicio: [this.disciplina.dataInicio, [Validators.required]],
+      dataFim: [this.disciplina.dataFim, [Validators.required]],
+      vagas: [this.disciplina.vagas, [Validators.required]],
+      modalidade: [this.disciplina.modalidade, [Validators.required]],
+      professor: [this.disciplina.professor, [Validators.required]]
     });
+  }
+
+  get errorControl(){
+    return this.form_cadastrar.controls;
   }
 
   async presentAlert(header: string, subHeader: string, message: string) {
