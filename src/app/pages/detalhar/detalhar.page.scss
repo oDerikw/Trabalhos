@@ -1,7 +1,23 @@
-ion-fab-button{
-  color: white;
+ion-title {
+    font-size: 25px;
 }
-ion-fab-button{
-  --background: #9ce0c6;
-  --background-activated:#449878;
+
+ion-datetime {
+    color: rgb(170, 170, 170);
+}
+ion-header{
+    height: 60px;
+}
+span {
+    font-size: 13px;
+    color: rgb(237, 142, 142);
+}
+ion-content{
+    --ion-background-color: #9ce0c6;
+}
+
+ion-list{
+  --ion-background-color:white;
+  padding-bottom: 20px;
+  height: 100%;
 }

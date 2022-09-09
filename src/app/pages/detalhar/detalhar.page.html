@@ -2,9 +2,9 @@
 
   <ion-toolbar style="display:flex;">
     <ion-buttons slot="start">
-      <ion-icon name="chevron-back-outline" style="zoom:1.8;" (click)="irParaHome()"></ion-icon>
+      <ion-icon name="chevron-back-outline" style="zoom:1.8; color: white;" (click)="irParaHome()"></ion-icon>
     </ion-buttons>
-    <ion-title style="background-color: #9ce0c6;color: white;">Detalhar</ion-title>
+    <ion-title style="background-color: #9ce0c6;color: white; font-size: 25px;">Detalhar</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,36 +16,79 @@
       (ionChange)="alterarEdicao()"></ion-toggle>
     </ion-item>
 
-
+    <!-- Nome -->
     <ion-item>
       <ion-input placeholder="Nome" [(ngModel)]="disciplina.nome" disabled="{{edicao}}"></ion-input>
     </ion-item>
-    <ion-item *ngIf="(((errorControl.nome.touched)||(errorControl.nome.dirty))&& errorControl.nome.errors)">
-      <span *ngIf="errorControl.nome.errors?.required">
-        Nome é obrigatório!
-      </span>
-    </ion-item>
 
+    <!-- Professor -->
     <ion-item>
       <ion-input placeholder="Professor" [(ngModel)]="disciplina.professor" disabled="{{edicao}}"></ion-input>
     </ion-item>
-    <ion-item
-      *ngIf="(((errorControl.professor.touched)||(errorControl.professor.dirty))&& errorControl.professor.errors)">
-      <span *ngIf="errorControl.professor.errors?.required">
-        Professor é obrigatório!
-      </span>
+
+    <!-- Carga horária -->
+    <ion-item>
+      <ion-label>Carga Horaria: </ion-label>
+      <ion-input placeholder="Carga horária" [(ngModel)]="disciplina.cargaHoraria" disabled="{{edicao}}"></ion-input>
     </ion-item>
 
+    <!-- Natureza -->
+    <ion-item>
+      <ion-label>Natureza: </ion-label>
+      <ion-select placeholder="Selecione a Natureza" [(ngModel)]="disciplina.natureza" disabled="{{edicao}}">
+        <ion-select-option value="obrigatoria">Obrigatória</ion-select-option>
+        <ion-select-option value="optativa">Optativa</ion-select-option>
+      </ion-select>
+    </ion-item>
 
+    <!-- Data de início -->
+    <ion-item>
+      <ion-label>Data de Início: </ion-label>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="datetime" presentation="date" [(ngModel)]="disciplina.dataInicio" disabled="{{edicao}}">
+          </ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
 
+    <!-- Data de Término -->
+    <ion-item>
+      <ion-label>Data de Término: </ion-label>
+      <ion-datetime-button datetime="datetime2"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="datetime2" presentation="date" [(ngModel)]="disciplina.dataFim" disabled="{{edicao}}">
+          </ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+
+    <!-- Vagas -->
+    <ion-item>
+      <ion-label>Quantidade de vagas: </ion-label>
+      <ion-input placeholder="Vagas" [(ngModel)]="disciplina.vagas" disabled="{{edicao}}"></ion-input>
+    </ion-item>
+
+    <!-- Modalidade -->
+    <ion-radio-group value="online" [(ngModel)]="disciplina.modalidade" disabled="{{edicao}}">
+      <ion-label>Modalidade: </ion-label>
+      <ion-item>
+        <ion-label>Online</ion-label>
+        <ion-radio slot="start" color="success" value="online" disabled="{{edicao}}"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Presencial</ion-label>
+        <ion-radio slot="start" color="tertiary" value="presencial" disabled="{{edicao}}"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Híbrido</ion-label>
+        <ion-radio slot="start" color="danger" value="hibrido" disabled="{{edicao}}"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+
+    <ion-button disabled="{{edicao}}" expand="block" (click)="editar()" >Salvar</ion-button>
+    <ion-button disabled="{{edicao}}" expand="block" (click)="excluir()" color="danger" >Excluir</ion-button>
   </ion-list>
-
-  <ion-button disabled="{{edicao}}" expand="block" (click)="editar()" >Salvar</ion-button>
-  <ion-button disabled="{{edicao}}" expand="block" (click)="excluir()" color="danger" >Excluir</ion-button>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="irParaHome()">
-      <ion-icon name="home"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>

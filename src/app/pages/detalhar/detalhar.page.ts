@@ -14,8 +14,7 @@ import { DisciplinaService } from 'src/app/services/disciplina.service';
 })
 export class DetalharPage implements OnInit {
   disciplina : Disciplina;
-  form_cadastrar : FormGroup;
-  isSubmitted: boolean = false;
+  form_detalhar : FormGroup;
   data: string;
   edicao: boolean = true;
 
@@ -24,13 +23,11 @@ export class DetalharPage implements OnInit {
     private disciplinaService: DisciplinaService,
     private formBuilder:FormBuilder) { }
 
-    // nome: [this.contato.nome, [Validators.required]],
-
   ngOnInit() {
     const nav = this.router.getCurrentNavigation();
     this.disciplina = nav.extras.state.objeto;
     this.data= new Date().toISOString();
-    this.form_cadastrar = this.formBuilder.group({
+    this.form_detalhar = this.formBuilder.group({
       nome: [this.disciplina.nome, [Validators.required]],
       cargaHoraria: [this.disciplina.cargaHoraria, [Validators.required]],
       natureza: [this.disciplina.natureza, [Validators.required]],
@@ -40,10 +37,6 @@ export class DetalharPage implements OnInit {
       modalidade: [this.disciplina.modalidade, [Validators.required]],
       professor: [this.disciplina.professor, [Validators.required]]
     });
-  }
-
-  get errorControl(){
-    return this.form_cadastrar.controls;
   }
 
   async presentAlert(header: string, subHeader: string, message: string) {
