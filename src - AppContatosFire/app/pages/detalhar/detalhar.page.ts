@@ -72,8 +72,6 @@ export class DetalharPage implements OnInit {
     })
   }
 
- 
-
 excluirContato(){
   this.contatoFS.excluirContato(this.contato)
   .then(()=>{
@@ -84,7 +82,6 @@ excluirContato(){
     this.presentAlert("Agenda", "Erro", "Erro ao excluir");
     console.log(error);
   })
-    
 }
 
 //no trabalho deverão estar em outro arquivo
