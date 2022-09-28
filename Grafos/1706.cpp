@@ -1,4 +1,4 @@
- Algoritmos em Grafos (20221570COI-A2332) 
+ /*Algoritmos em Grafos (20221570COI-A2332) 
  T1 (1706) - Version 1.5 
 
  
@@ -7,9 +7,9 @@ Integrantes
 1. Derik Leonardo Rosvadoski Konisk
 2. Paula Yanagawa Nizer
 3. Vitor Siqueira
+*/
 
-
- Bibliotecas 
+// Bibliotecas 
 #include iostream
 #include vector
 #include limits
