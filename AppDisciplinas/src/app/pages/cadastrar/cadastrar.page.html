@@ -46,6 +46,9 @@
           <span *ngIf="errorControl.cargaHoraria.errors?.required">
             Carga Horaria é obrigatório!
           </span>
+          <span *ngIf="errorControl.cargaHoraria.errors?.max || errorControl.cargaHoraria.errors?.min" >
+            Carga Horária deve estar entre 1 e 100!
+          </span>
         </ion-item>
 
         <!-- Natureza -->
@@ -66,10 +69,11 @@
         <!-- Data inicio -->
         <ion-item>
           <ion-label>Data de Início: </ion-label>
-          <ion-datetime-button datetime="datetime"></ion-datetime-button>
+          <ion-datetime-button datetime="datetime" ></ion-datetime-button>
           <ion-modal [keepContentsMounted]="true">
             <ng-template>
-              <ion-datetime id="datetime" min="{{data}}" presentation="date" formControlName="dataInicio">
+              <ion-datetime id="datetime" [isDateEnabled]="isWeekday" min="{{data}}"
+               presentation="date" formControlName="dataInicio" (ionChange)="dataLimit(data)">
               </ion-datetime>
             </ng-template>
           </ion-modal>
@@ -81,7 +85,8 @@
           <ion-datetime-button datetime="datetime2"></ion-datetime-button>
           <ion-modal [keepContentsMounted]="true">
             <ng-template>
-              <ion-datetime id="datetime2" min="{{data}}" presentation="date" formControlName="dataFim"> <!-- lessDate="{{dataInicio.value}}" -->
+              <ion-datetime id="datetime2" [isDateEnabled]="isWeekday" min="{{data}}"
+              presentation="date" formControlName="dataFim" > <!-- lessDate="{{dataInicio.value}}" -->
               </ion-datetime>
             </ng-template>
           </ion-modal>
@@ -95,6 +100,9 @@
         <ion-item *ngIf="(((errorControl.vagas.touched)||(errorControl.vagas.dirty))&& errorControl.vagas.errors)">
           <span *ngIf="errorControl.vagas.errors?.required">
             Vagas é obrigatório!
+          </span>
+          <span *ngIf="errorControl.vagas.errors?.max || errorControl.vagas.errors?.min" >
+            Vagas deve estar entre 1 e 100!
           </span>
         </ion-item>
 
